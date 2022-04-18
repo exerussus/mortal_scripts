@@ -1,10 +1,10 @@
 def swift_riding():
     from pyautogui import press, hold
-    from time import sleep
+    import time
 
-    sleep(3)
+    time.sleep(3)
     press('w')
-    sleep(0.2)
+    time.sleep(0.2)
     press('w')
     with hold('a'):
         while True:
