@@ -5,7 +5,7 @@ def main_menu():
         choice = input('Шо качаем?\n'
                        '1. Ментал тренинг\n'
                        '2. Маунтед мэджери\n'
-                       '3. Свифт райдинг'
+                       '3. Свифт райдинг\n'
                        '0. Выход\n')
         if choice == '1':
             from mental_training import mental_training
