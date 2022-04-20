@@ -10,7 +10,7 @@ def mental_training():
     data_wait = [30, 35, 20, 25]
     while True:
 
-        time.sleep(6)
+
         pyautogui.press('1')
         time.sleep(random.uniform(1.7, 2.2))
         pyautogui.press('q')
