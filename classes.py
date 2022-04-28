@@ -123,4 +123,3 @@ class Training:
             sleep(minutes * 60)
 
 
-Training.human_lore()
