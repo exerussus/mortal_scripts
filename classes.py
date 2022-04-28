@@ -8,9 +8,9 @@ class TimeActions:
     def countdown(seconds):
         from time import sleep
         for i in range(seconds, 0, -1):
-            print(str(f'До старта {i} сек...'))
+            print(str(f'{i} sec...'))
             sleep(1)
-        print('Работает')
+        return 'Working'
 
 
 class Training:
@@ -30,8 +30,6 @@ class Training:
         from time import sleep
         from random import uniform as between
 
-        TimeActions.countdown(3)
-
         for rep in range(repetition):
 
             for i in range(50):
@@ -48,6 +46,8 @@ class Training:
             press('0')
             sleep(between(24.0, 35.5))
 
+        return 'Done'
+
     @staticmethod
     def human_lore(repetition=20):
 
@@ -62,8 +62,6 @@ class Training:
         from time import sleep
         from random import randrange as between
 
-        TimeActions.countdown(3)
-
         for i in range(repetition):
 
             sleep(between(2, 4))
@@ -74,6 +72,8 @@ class Training:
 
             with hold('r'):
                 sleep(between(2, 4))
+
+        return 'Done'
 
     @staticmethod
     def mounted_magery(repetition=10):
@@ -100,6 +100,8 @@ class Training:
                 sleep(between(3, 4))
                 press('q')
                 sleep(between(1, 2))
+
+        return 'Done'
 
 
 Training.human_lore()
