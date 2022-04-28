@@ -103,5 +103,24 @@ class Training:
 
         return 'Done'
 
+    @staticmethod
+    def swift_riding(minutes=30):
+
+        """Special swift riding training.\n
+        Mount your horse and use this script.\n
+        That's all.\n
+        P.S. Don't forget to feed your horse. Care about
+        your horse. Sometimes it can save your mortal life."""
+
+        from pyautogui import press, hold
+        from time import sleep
+
+        sleep(3)
+        press('w')
+        sleep(0.2)
+        press('w')
+        with hold('a'):
+            sleep(minutes * 60)
+
 
 Training.human_lore()
