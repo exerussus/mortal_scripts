@@ -2,6 +2,9 @@
 
 class TimeActions:
 
+    def __init__(self):
+        pass
+
     @staticmethod
     def countdown(seconds):
         from time import sleep
@@ -10,10 +13,14 @@ class TimeActions:
             sleep(1)
         print('Работает')
 
+
 class Training:
 
+    def __init__(self):
+        pass
+
     @staticmethod
-    def mental_training(repitition=10):
+    def mental_training(repetition=10):
         """Special mental training with water.
         You need to set "spurt" into 1 cell and
         "lesser heal" into 4 cell before using this
@@ -21,12 +28,10 @@ class Training:
         from pyautogui import press
         from time import sleep
         from random import uniform as between
-        from classes import TimeActions
-
 
         TimeActions.countdown(3)
 
-        for l in range(repitition):
+        for l in range(repetition):
 
             for i in range(50):
                 press('1')
@@ -41,5 +46,6 @@ class Training:
 
             press('0')
             sleep(between(24.0, 35.5))
+
 
 Training.mental_training()
