@@ -1,5 +1,4 @@
 
-
 class TimeActions:
 
     def __init__(self):
@@ -33,7 +32,7 @@ class Training:
 
         TimeActions.countdown(3)
 
-        for l in range(repetition):
+        for rep in range(repetition):
 
             for i in range(50):
                 press('1')
@@ -75,6 +74,32 @@ class Training:
 
             with hold('r'):
                 sleep(between(2, 4))
+
+    @staticmethod
+    def mounted_magery(repetition=10):
+
+        """Special mounted training with water.\n
+        You need to set "spurt" into 1 cell and
+        "lesser heal" into 4 cell before using this
+        script. Don't forget to get calamine and water.\n
+        Mount your horse before using script. """
+
+        from pyautogui import press
+        from time import sleep
+        from random import uniform as between
+
+        for rep in range(repetition):
+            for i in range(23):
+                press('1')
+                sleep(between(3, 4))
+                press('q')
+                sleep(between(1, 2))
+
+            for i in range(6):
+                press('4')
+                sleep(between(3, 4))
+                press('q')
+                sleep(between(1, 2))
 
 
 Training.human_lore()
