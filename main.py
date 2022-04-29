@@ -1,5 +1,4 @@
 from interface import MO2ScriptsApp
 
-MO2ScriptsApp().run()
-
-
+mortal = MO2ScriptsApp()
+mortal.gui_activity()
