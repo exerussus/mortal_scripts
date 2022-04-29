@@ -1,18 +1,4 @@
 
-class TimeActions:
-
-    def __init__(self):
-        pass
-
-    @staticmethod
-    def countdown(seconds):
-        from time import sleep
-        for i in range(seconds, 0, -1):
-            print(str(f'{i} sec...'))
-            sleep(1)
-        return 'Working'
-
-
 class Training:
 
     def __init__(self):

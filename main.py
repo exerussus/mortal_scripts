@@ -1,5 +1,5 @@
-from menu import main_menu
+from interface import MO2ScriptsApp
 
-main_menu()
+MO2ScriptsApp().run()
 
 
