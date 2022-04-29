@@ -108,4 +108,9 @@ class Training:
         with hold('a'):
             sleep(minutes * 60)
 
+    @staticmethod
+    def active_blocking_training(repetitions):
+        import pyautogui
+        from time import sleep
 
+        pass
