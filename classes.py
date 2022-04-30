@@ -1,3 +1,6 @@
+import time
+
+
 class Training:
 
     def __init__(self):
@@ -107,16 +110,23 @@ class Training:
             sleep(minutes * 60)
 
     @staticmethod
-    def blocking_training(repetitions=200, speed=None):
+    def blocking_training(repetitions=2, speed=None):
 
         """Special blocking training.\n
         This training not for your actions skills, It's for your
         mate. Set your character where you want and start the script.
-        You will auto-attack and your mate will block. That's all. """
+        You will auto-attack and your mate will block.\n
+         Before using:\n
+        1.Set your settings overhead attack on 'alt' key and
+        thrust attack on 'F' key. \n
+        2.Put your swords on hotkeys 1, 2, 3... 9.\n
+        After scripts starting choose speed of attack where 1 is very quickly,
+        2 is normal and 3 is very slow."""
 
-        from pyautogui import hold, click
+        from pyautogui import click, press
         from time import sleep
         import random
+        import keyboard
 
         if not speed:
             try:
@@ -124,7 +134,7 @@ class Training:
             except ValueError:
                 speed = 1
 
-        sleep(5)
+        TimerCount.countdown(5)
 
         if speed == 1:
             actually_speed = 0.7
@@ -133,26 +143,54 @@ class Training:
         else:
             actually_speed = 1.4
 
-        for i in range(repetitions):
+        change_sword = 0
+        key_sword = 1
+        cycles = 0
+
+        while not keyboard.is_pressed('ctrl'):
+
+            cycles += 1
+            change_sword += 1
+
             attack = random.randrange(1, 5)
 
             if attack == 1:
-                with hold('a'):
-                    click()
+                press('a')
+                click()
                 sleep(actually_speed)
 
             if attack == 2:
-                with hold('d'):
-                    click()
+                press('d')
+                click()
                 sleep(actually_speed)
 
             if attack == 3:
-                with hold('alt'):
-                    sleep(0.2)
+                press('alt')
                 sleep(actually_speed)
 
             if attack == 4:
-                with hold('f'):
-                    sleep(0.2)
+                press('f')
                 sleep(actually_speed)
 
+            if change_sword == 90:
+                if key_sword < 9:
+                    press(str(key_sword))
+                    key_sword += 1
+                    change_sword = 0
+            if repetitions == cycles:
+                break
+
+
+class TimerCount:
+
+    @staticmethod
+    def countdown(sec):
+
+        from time import sleep
+
+        for i in range(sec, 0, -1):
+            print(i)
+            sleep(1)
+
+
+Training.blocking_training()
