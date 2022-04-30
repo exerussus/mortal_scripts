@@ -1,4 +1,3 @@
-
 class Training:
 
     def __init__(self):
@@ -49,7 +48,6 @@ class Training:
         from random import randrange as between
 
         for i in range(repetition):
-
             sleep(between(2, 4))
 
             click(x=1380, y=661)
@@ -109,8 +107,52 @@ class Training:
             sleep(minutes * 60)
 
     @staticmethod
-    def active_blocking_training(repetitions):
-        import pyautogui
-        from time import sleep
+    def blocking_training(repetitions=200, speed=None):
 
-        pass
+        """Special blocking training.\n
+        This training not for your actions skills, It's for your
+        mate. Set your character where you want and start the script.
+        You will auto-attack and your mate will block. That's all. """
+
+        from pyautogui import hold, click
+        from time import sleep
+        import random
+
+        if not speed:
+            try:
+                speed = int(input())
+            except ValueError:
+                speed = 1
+
+        sleep(5)
+
+        if speed == 1:
+            actually_speed = 0.7
+        elif speed == 2:
+            actually_speed = 1.1
+        else:
+            actually_speed = 1.4
+
+        for i in range(repetitions):
+            attack = random.randrange(1, 5)
+
+            if attack == 1:
+                with hold('a'):
+                    click()
+                sleep(actually_speed)
+
+            if attack == 2:
+                with hold('d'):
+                    click()
+                sleep(actually_speed)
+
+            if attack == 3:
+                with hold('alt'):
+                    sleep(0.2)
+                sleep(actually_speed)
+
+            if attack == 4:
+                with hold('f'):
+                    sleep(0.2)
+                sleep(actually_speed)
+
