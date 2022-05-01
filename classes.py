@@ -1,5 +1,3 @@
-import time
-
 import keyboard
 
 
@@ -244,6 +242,45 @@ class TimerCount:
         for i in range(sec, 0, -1):
             print(i)
             sleep(1)
+
+
+class ConsoleBuild:
+
+    def __init__(self):
+        pass
+
+    @staticmethod
+    def run():
+        from time import sleep
+        print('Welcome to MO2 scripts!')
+        sleep(0.2)
+
+        ctrl_space = keyboard.add_hotkey('ctrl', 'space')
+        while not keyboard.is_pressed(ctrl_space):
+
+            choice = input('Choose action script:\n'
+                           '1. Mental training\n'
+                           '2. Mounted magery\n'
+                           '3. Human lore\n'
+                           '4. Swift riding\n'
+                           '5. Blocking training\n'
+                           '0 for exit or press "ctrl"+"space" hotkey\n'
+                           'Your choice: ')
+
+            if choice == '1':
+                Training.mental_training()
+            elif choice == '2':
+                Training.mounted_magery()
+            elif choice == '3':
+                Training.human_lore()
+            elif choice == '4':
+                Training.swift_riding()
+            elif choice == '5':
+                Training.blocking_training()
+            elif choice == '0':
+                exit(0)
+            else:
+                print('Please choose number from list...')
 
 
 Training.blocking_training()
