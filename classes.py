@@ -1,5 +1,7 @@
 import time
 
+import keyboard
+
 
 class Training:
 
@@ -75,18 +77,33 @@ class Training:
         from time import sleep
         from random import uniform as between
 
-        for rep in range(repetition):
-            for i in range(23):
+        count = 0
+        while not keyboard.is_pressed('ctrl'):
+
+            count += 1
+            if count == repetition:
+                break
+
+            spurt_count = 0
+            while not keyboard.is_pressed('ctrl'):
+                spurt_count += 1
                 press('1')
-                sleep(between(3, 4))
+                sleep((between(3, 4)))
                 press('q')
                 sleep(between(1, 2))
+                if spurt_count == 23:
+                    break
 
-            for i in range(6):
+            heal_count = 0
+            while not keyboard.is_pressed('ctrl'):
+                heal_count += 1
                 press('4')
                 sleep(between(3, 4))
                 press('q')
                 sleep(between(1, 2))
+                if heal_count == 5:
+                    break
+
 
         return 'Done'
 
@@ -102,12 +119,14 @@ class Training:
         from pyautogui import press, hold
         from time import sleep
 
-        sleep(3)
-        press('w')
-        sleep(0.2)
-        press('w')
-        with hold('a'):
-            sleep(minutes * 60)
+        while not keyboard.is_pressed('ctrl'):
+            TimerCount.countdown(5)
+            with hold('w'):
+                sleep(0.1)
+            with hold('w'):
+                sleep(0.1)
+            with hold('a'):
+                sleep(minutes * 60)
 
     @staticmethod
     def blocking_training(repetitions=2, speed=None):
