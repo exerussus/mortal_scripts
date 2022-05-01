@@ -44,8 +44,6 @@ class Training:
 
     }
 
-
-
     @staticmethod
     def mental_training(repetition=10):
 
@@ -182,7 +180,7 @@ class Training:
         P.S. Don't forget to feed your horse. Care about
         your horse. Sometimes it can save your mortal life."""
 
-        from pyautogui import press, hold
+        from pyautogui import hold
         from time import sleep
 
         TimerCount.countdown(5)
