@@ -10,26 +10,30 @@ class Training:
         'mental_training': "Special mental training with water.\n"
                            "You need to set \"spurt\" into 1 cell and\n"
                            "\"lesser heal\" into 4 cell before using this\n"
-                           "script. Don't forget to get calamine and water.",
+                           "script. Don't forget to get calamine and water.\n"
+                           "Hold 'ctrl' to stop.",
 
         'human_lore': 'Special human lore training.\n'
                       'Open character\'s menu (C key) and'
                       'set your character facing to priest.'
                       'After the cycles you have indicated,'
                       'pick up the bags and cook all of that.\n'
-                      'P.S. set your window size at 1920 and 1080.',
+                      'P.S. set your window size at 1920 and 1080.\n'
+                      'Hold \'ctrl\' to stop.',
 
         'mounted_magery': """Special mounted training with water.\n
                             You need to set "spurt" into 1 cell and
                             "lesser heal" into 4 cell before using this
                             script. Don't forget to get calamine and water.\n
-                            Mount your horse before using script. """,
+                            Mount your horse before using script. \n
+                            Hold 'ctrl' to stop.""",
 
         'swift_riding': """Special swift riding training.\n
                         Mount your horse and use this script.\n
                         That's all.\n
                         P.S. Don't forget to feed your horse. Care about
-                        your horse. Sometimes it can save your mortal life.""",
+                        your horse. Sometimes it can save your mortal life.\n
+                        Hold 'ctrl' to stop.""",
 
         'blocking_training': """Special blocking training.\n
                             This training not for your actions skills, It's for your
@@ -40,7 +44,11 @@ class Training:
                             thrust attack on 'F' key. \n
                             2.Put your swords on hotkeys 1, 2, 3... 9.\n
                             After scripts starting choose speed of attack where 1 is very quickly,
-                            2 is normal and 3 is very slow."""
+                            2 is normal and 3 is very slow.\n Hold 'ctrl' to stop.""",
+
+        'defencing_and_attacking_stance': """Attacking and defencing stance training.\n
+                                            Set your character facing to another character then\n
+                                            start the script.\n Hold 'ctrl' to stop."""
 
     }
 
@@ -50,7 +58,8 @@ class Training:
         """Special mental training with water.\n
         You need to set "spurt" into 1 cell and
         "lesser heal" into 4 cell before using this
-        script. Don't forget to get calamine and water."""
+        script. Don't forget to get calamine and water.\n
+        Hold 'ctrl' to stop."""
 
         from pyautogui import press
         from time import sleep
@@ -101,7 +110,8 @@ class Training:
         set your character facing to priest.
         After the cycles you have indicated,
         pick up the bags and cook all of that.\n
-        P.S. set your window size at 1920 and 1080."""
+        P.S. set your window size at 1920 and 1080.\n
+        Hold 'ctrl' to stop."""
 
         from pyautogui import click, hold
         from time import sleep
@@ -134,7 +144,8 @@ class Training:
         You need to set "spurt" into 1 cell and
         "lesser heal" into 4 cell before using this
         script. Don't forget to get calamine and water.\n
-        Mount your horse before using script. """
+        Mount your horse before using script. \n
+        Hold 'ctrl' to stop."""
 
         from pyautogui import press
         from time import sleep
@@ -178,7 +189,8 @@ class Training:
         Mount your horse and use this script.\n
         That's all.\n
         P.S. Don't forget to feed your horse. Care about
-        your horse. Sometimes it can save your mortal life."""
+        your horse. Sometimes it can save your mortal life.
+         Hold 'ctrl' to stop."""
 
         from pyautogui import hold
         from time import sleep
@@ -206,7 +218,7 @@ class Training:
         thrust attack on 'F' key. \n
         2.Put your swords on hotkeys 1, 2, 3... 9.\n
         After scripts starting choose speed of attack where 1 is very quickly,
-        2 is normal and 3 is very slow."""
+        2 is normal and 3 is very slow.  Hold 'ctrl' to stop."""
 
         from pyautogui import click, press
         from time import sleep
@@ -269,6 +281,28 @@ class Training:
             if repetitions == cycles:
                 break
 
+    @staticmethod
+    def defencing_and_attacking_stance(repetitions=300):
+
+        """Attacking and defencing stance training.\n
+        Set your character facing to another character then\n
+        start the script.\n Hold 'ctrl' to stop."""
+
+        from pyautogui import click
+        from time import sleep
+
+        TimerCount.countdown(5)
+
+        count = -1
+        while not keyboard.is_pressed('ctrl'):
+
+            count += 1
+            if count == repetitions:
+                break
+
+            click()
+            sleep(0.7)
+
 
 class TimerCount:
 
@@ -301,7 +335,9 @@ class ConsoleBuild:
                            '3. Human lore\n'
                            '4. Swift riding\n'
                            '5. Blocking training\n'
+                           '6. Defencing and attacking stance\n'
                            '0. Exit \n'
+                           'If you need help, write "h" after number.'
                            'Your choice: ')
 
             if choice == '1':
@@ -314,6 +350,8 @@ class ConsoleBuild:
                 Training.swift_riding()
             elif choice == '5':
                 Training.blocking_training()
+            elif choice == '6':
+                Training.defencing_and_attacking_stance()
             elif choice == '0':
                 exit(0)
 
@@ -331,6 +369,9 @@ class ConsoleBuild:
                 input('Press any key...')
             elif choice == '5h':
                 print(Training.data['blocking_training'])
+                input('Press any key...')
+            elif choice == '6h':
+                print(Training.data['defencing_and_attacking_stance'])
                 input('Press any key...')
             else:
                 print('Please choose number from list...')
