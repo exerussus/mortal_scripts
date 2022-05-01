@@ -6,6 +6,46 @@ class Training:
     def __init__(self):
         pass
 
+    data = {
+        'mental_training': "Special mental training with water.\n"
+                           "You need to set \"spurt\" into 1 cell and\n"
+                           "\"lesser heal\" into 4 cell before using this\n"
+                           "script. Don't forget to get calamine and water.",
+
+        'human_lore': 'Special human lore training.\n'
+                      'Open character\'s menu (C key) and'
+                      'set your character facing to priest.'
+                      'After the cycles you have indicated,'
+                      'pick up the bags and cook all of that.\n'
+                      'P.S. set your window size at 1920 and 1080.',
+
+        'mounted_magery': """Special mounted training with water.\n
+                            You need to set "spurt" into 1 cell and
+                            "lesser heal" into 4 cell before using this
+                            script. Don't forget to get calamine and water.\n
+                            Mount your horse before using script. """,
+
+        'swift_riding': """Special swift riding training.\n
+                        Mount your horse and use this script.\n
+                        That's all.\n
+                        P.S. Don't forget to feed your horse. Care about
+                        your horse. Sometimes it can save your mortal life.""",
+
+        'blocking_training': """Special blocking training.\n
+                            This training not for your actions skills, It's for your
+                            mate. Set your character where you want and start the script.
+                            You will auto-attack and your mate will block.\n
+                             Before using:\n
+                            1.Set your settings overhead attack on 'alt' key and
+                            thrust attack on 'F' key. \n
+                            2.Put your swords on hotkeys 1, 2, 3... 9.\n
+                            After scripts starting choose speed of attack where 1 is very quickly,
+                            2 is normal and 3 is very slow."""
+
+    }
+
+
+
     @staticmethod
     def mental_training(repetition=10):
 
@@ -255,8 +295,7 @@ class ConsoleBuild:
         print('Welcome to MO2 scripts!')
         sleep(0.2)
 
-        ctrl_space = keyboard.add_hotkey('ctrl', 'space')
-        while not keyboard.is_pressed(ctrl_space):
+        while not keyboard.is_pressed('0'):
 
             choice = input('Choose action script:\n'
                            '1. Mental training\n'
@@ -264,48 +303,38 @@ class ConsoleBuild:
                            '3. Human lore\n'
                            '4. Swift riding\n'
                            '5. Blocking training\n'
-                           '0 for exit or press "ctrl"+"space" hotkey\n'
+                           '0. Exit \n'
                            'Your choice: ')
 
-            if len(choice) == 1:
+            if choice == '1':
+                Training.mental_training()
+            elif choice == '2':
+                Training.mounted_magery()
+            elif choice == '3':
+                Training.human_lore()
+            elif choice == '4':
+                Training.swift_riding()
+            elif choice == '5':
+                Training.blocking_training()
+            elif choice == '0':
+                exit(0)
 
-                if choice == '1':
-                    Training.mental_training()
-                elif choice == '2':
-                    Training.mounted_magery()
-                elif choice == '3':
-                    Training.human_lore()
-                elif choice == '4':
-                    Training.swift_riding()
-                elif choice == '5':
-                    Training.blocking_training()
-                elif choice == '0':
-                    exit(0)
-                else:
-                    print('Please choose number from list...')
-
-            elif len(choice) == 2:
-                if choice == '1h':
-                    print(Training.mental_training().__doc__)
-                    input('Press any key...')
-                elif choice == '2h':
-                    print(Training.mounted_magery().__doc__)
-                    input('Press any key...')
-                elif choice == '3h':
-                    print(Training.human_lore().__doc__)
-                    input('Press any key...')
-                elif choice == '4h':
-                    print(Training.swift_riding().__doc__)
-                    input('Press any key...')
-                elif choice == '5h':
-                    print(Training.blocking_training().__doc__)
-                    input('Press any key...')
-                else:
-                    print('Please choose number from list...')
-
+            elif choice == '1h':
+                print(Training.data['mental_training'])
+                input('Press any key...')
+            elif choice == '2h':
+                print(Training.data['mounted_magery'])
+                input('Press any key...')
+            elif choice == '3h':
+                print(Training.data['human_lore'])
+                input('Press any key...')
+            elif choice == '4h':
+                print(Training.data['swift_riding'])
+                input('Press any key...')
+            elif choice == '5h':
+                print(Training.data['blocking_training'])
+                input('Press any key...')
             else:
-                print('Please choose number of list...')
+                print('Please choose number from list...')
+
                 sleep(0.2)
-
-
-Training.blocking_training()
