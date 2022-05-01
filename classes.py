@@ -267,20 +267,45 @@ class ConsoleBuild:
                            '0 for exit or press "ctrl"+"space" hotkey\n'
                            'Your choice: ')
 
-            if choice == '1':
-                Training.mental_training()
-            elif choice == '2':
-                Training.mounted_magery()
-            elif choice == '3':
-                Training.human_lore()
-            elif choice == '4':
-                Training.swift_riding()
-            elif choice == '5':
-                Training.blocking_training()
-            elif choice == '0':
-                exit(0)
+            if len(choice) == 1:
+
+                if choice == '1':
+                    Training.mental_training()
+                elif choice == '2':
+                    Training.mounted_magery()
+                elif choice == '3':
+                    Training.human_lore()
+                elif choice == '4':
+                    Training.swift_riding()
+                elif choice == '5':
+                    Training.blocking_training()
+                elif choice == '0':
+                    exit(0)
+                else:
+                    print('Please choose number from list...')
+
+            elif len(choice) == 2:
+                if choice == '1h':
+                    print(Training.mental_training().__doc__)
+                    input('Press any key...')
+                elif choice == '2h':
+                    print(Training.mounted_magery().__doc__)
+                    input('Press any key...')
+                elif choice == '3h':
+                    print(Training.human_lore().__doc__)
+                    input('Press any key...')
+                elif choice == '4h':
+                    print(Training.swift_riding().__doc__)
+                    input('Press any key...')
+                elif choice == '5h':
+                    print(Training.blocking_training().__doc__)
+                    input('Press any key...')
+                else:
+                    print('Please choose number from list...')
+
             else:
-                print('Please choose number from list...')
+                print('Please choose number of list...')
+                sleep(0.2)
 
 
 Training.blocking_training()
