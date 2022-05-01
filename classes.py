@@ -20,15 +20,34 @@ class Training:
         from time import sleep
         from random import uniform as between
 
-        for rep in range(repetition):
+        TimerCount.countdown(5)
 
-            for i in range(50):
+        count = -1
+        while not keyboard.is_pressed('ctrl'):
+
+            count += 1
+            if count == repetition:
+                break
+
+            spurt_count = 0
+            while not keyboard.is_pressed('ctrl'):
+
+                spurt_count += 1
+                if spurt_count == 50:
+                    break
+
                 press('1')
                 sleep(between(1.7, 2.2))
                 press('q')
                 sleep(between(1.0, 1.5))
 
-            for i in range(5):
+            heal_count = 0
+            while not keyboard.is_pressed('ctrl'):
+
+                heal_count += 1
+                if heal_count == 6:
+                    break
+
                 press('4')
                 sleep(between(1.7, 2.2))
                 press('q')
@@ -52,7 +71,15 @@ class Training:
         from time import sleep
         from random import randrange as between
 
-        for i in range(repetition):
+        TimerCount.countdown(5)
+
+        count = -1
+        while not keyboard.is_pressed('ctrl'):
+
+            count += 1
+            if count == repetition:
+                break
+
             sleep(between(2, 4))
 
             click(x=1380, y=661)
@@ -77,7 +104,9 @@ class Training:
         from time import sleep
         from random import uniform as between
 
-        count = 0
+        TimerCount.countdown(5)
+
+        count = -1
         while not keyboard.is_pressed('ctrl'):
 
             count += 1
@@ -104,7 +133,6 @@ class Training:
                 if heal_count == 5:
                     break
 
-
         return 'Done'
 
     @staticmethod
@@ -119,8 +147,10 @@ class Training:
         from pyautogui import press, hold
         from time import sleep
 
+        TimerCount.countdown(5)
+
         while not keyboard.is_pressed('ctrl'):
-            TimerCount.countdown(5)
+
             with hold('w'):
                 sleep(0.1)
             with hold('w'):
@@ -149,7 +179,11 @@ class Training:
 
         if not speed:
             try:
-                speed = int(input())
+                speed = int(input('Choose attack speed:\n'
+                                  '1. Fast\n'
+                                  '2. Medium\n'
+                                  '3. Slow\n'
+                                  'Your choice: '))
             except ValueError:
                 speed = 1
 
