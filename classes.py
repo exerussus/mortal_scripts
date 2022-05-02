@@ -1,4 +1,3 @@
-import keyboard
 
 
 class MentalOffence:
@@ -11,7 +10,7 @@ class MentalOffence:
 
     @staticmethod
     def start(repetition=10):
-
+        from keyboard import is_pressed
         from pyautogui import press
         from time import sleep
         from random import uniform as between
@@ -19,14 +18,14 @@ class MentalOffence:
         TimerCount.countdown(5)
 
         count = -1
-        while not keyboard.is_pressed('ctrl'):
+        while not is_pressed('ctrl'):
 
             count += 1
             if count == repetition:
                 break
 
             spurt_count = 0
-            while not keyboard.is_pressed('ctrl'):
+            while not is_pressed('ctrl'):
 
                 spurt_count += 1
                 if spurt_count == 50:
@@ -38,7 +37,7 @@ class MentalOffence:
                 sleep(between(1.0, 1.5))
 
             heal_count = 0
-            while not keyboard.is_pressed('ctrl'):
+            while not is_pressed('ctrl'):
 
                 heal_count += 1
                 if heal_count == 6:
@@ -77,7 +76,7 @@ class HumanLore:
 
     @staticmethod
     def start(repetition=20):
-
+        from keyboard import is_pressed
         from pyautogui import click, hold
         from time import sleep
         from random import randrange as between
@@ -85,7 +84,7 @@ class HumanLore:
         TimerCount.countdown(5)
 
         count = -1
-        while not keyboard.is_pressed('ctrl'):
+        while not is_pressed('ctrl'):
 
             count += 1
             if count == repetition:
@@ -127,7 +126,7 @@ class MountedMagery:
 
     @staticmethod
     def start(repetition=10):
-
+        from keyboard import is_pressed
         from pyautogui import press
         from time import sleep
         from random import uniform as between
@@ -135,14 +134,14 @@ class MountedMagery:
         TimerCount.countdown(5)
 
         count = -1
-        while not keyboard.is_pressed('ctrl'):
+        while not is_pressed('ctrl'):
 
             count += 1
             if count == repetition:
                 break
 
             spurt_count = 0
-            while not keyboard.is_pressed('ctrl'):
+            while not is_pressed('ctrl'):
                 spurt_count += 1
                 press('1')
                 sleep((between(3, 4)))
@@ -152,7 +151,7 @@ class MountedMagery:
                     break
 
             heal_count = 0
-            while not keyboard.is_pressed('ctrl'):
+            while not is_pressed('ctrl'):
                 heal_count += 1
                 press('4')
                 sleep(between(3, 4))
@@ -188,13 +187,13 @@ class SwiftRiding:
 
     @staticmethod
     def start(minutes=30):
-
+        from keyboard import is_pressed
         from pyautogui import hold
         from time import sleep
 
         TimerCount.countdown(5)
 
-        while not keyboard.is_pressed('ctrl'):
+        while not is_pressed('ctrl'):
 
             with hold('w'):
                 sleep(0.1)
@@ -232,10 +231,10 @@ class BlockingTraining:
     @staticmethod
     def start(repetitions=2, speed=None):
 
+        from keyboard import is_pressed
         from pyautogui import click, press
         from time import sleep
         import random
-        import keyboard
 
         if not speed:
             try:
@@ -260,7 +259,7 @@ class BlockingTraining:
         key_sword = 1
         cycles = 0
 
-        while not keyboard.is_pressed('ctrl'):
+        while not is_pressed('ctrl'):
 
             cycles += 1
             change_sword += 1
@@ -321,13 +320,14 @@ class DefencingAndAttackingStance:
     @staticmethod
     def start(repetitions=300):
 
+        from keyboard import is_pressed
         from pyautogui import click
         from time import sleep
 
         TimerCount.countdown(5)
 
         count = -1
-        while not keyboard.is_pressed('ctrl'):
+        while not is_pressed('ctrl'):
 
             count += 1
             if count == repetitions:
@@ -366,11 +366,13 @@ class ConsoleBuild:
 
     @staticmethod
     def run():
+
         from time import sleep
+        from keyboard import is_pressed
         print('Welcome to MO2 scripts!')
         sleep(0.2)
 
-        while not keyboard.is_pressed('0'):
+        while not is_pressed('0'):
 
             choice = input('Choose action script:\n'
                            '1. Mental training\n'
