@@ -1,65 +1,16 @@
 import keyboard
 
 
-class Training:
+class MentalOffence:
 
-    def __init__(self):
-        pass
-
-    data = {
-        'mental_training': "Special mental training with water.\n"
-                           "You need to set \"spurt\" into 1 cell and\n"
-                           "\"lesser heal\" into 4 cell before using this\n"
-                           "script. Don't forget to get calamine and water.\n"
-                           "Hold 'ctrl' to stop.",
-
-        'human_lore': 'Special human lore training.\n'
-                      'Open character\'s menu (C key) and'
-                      'set your character facing to priest.'
-                      'After the cycles you have indicated,'
-                      'pick up the bags and cook all of that.\n'
-                      'P.S. set your window size at 1920 and 1080.\n'
-                      'Hold \'ctrl\' to stop.',
-
-        'mounted_magery': """Special mounted training with water.\n
-                            You need to set "spurt" into 1 cell and
-                            "lesser heal" into 4 cell before using this
-                            script. Don't forget to get calamine and water.\n
-                            Mount your horse before using script. \n
-                            Hold 'ctrl' to stop.""",
-
-        'swift_riding': """Special swift riding training.\n
-                        Mount your horse and use this script.\n
-                        That's all.\n
-                        P.S. Don't forget to feed your horse. Care about
-                        your horse. Sometimes it can save your mortal life.\n
-                        Hold 'ctrl' to stop.""",
-
-        'blocking_training': """Special blocking training.\n
-                            This training not for your actions skills, It's for your
-                            mate. Set your character where you want and start the script.
-                            You will auto-attack and your mate will block.\n
-                             Before using:\n
-                            1.Set your settings overhead attack on 'alt' key and
-                            thrust attack on 'F' key. \n
-                            2.Put your swords on hotkeys 1, 2, 3... 9.\n
-                            After scripts starting choose speed of attack where 1 is very quickly,
-                            2 is normal and 3 is very slow.\n Hold 'ctrl' to stop.""",
-
-        'defencing_and_attacking_stance': """Attacking and defencing stance training.\n
-                                            Set your character facing to another character then\n
-                                            start the script.\n Hold 'ctrl' to stop."""
-
-    }
-
-    @staticmethod
-    def mental_training(repetition=10):
-
-        """Special mental training with water.\n
+    """Special mental training with water.\n
         You need to set "spurt" into 1 cell and
         "lesser heal" into 4 cell before using this
         script. Don't forget to get calamine and water.\n
         Hold 'ctrl' to stop."""
+
+    @staticmethod
+    def start(repetition=10):
 
         from pyautogui import press
         from time import sleep
@@ -103,15 +54,29 @@ class Training:
         return 'Done'
 
     @staticmethod
-    def human_lore(repetition=20):
-
-        """Special human lore training.\n
-        Open character's menu (C key) and
-        set your character facing to priest.
-        After the cycles you have indicated,
-        pick up the bags and cook all of that.\n
-        P.S. set your window size at 1920 and 1080.\n
+    def help_func():
+        about = """
+        Special mental training with water.\n
+        You need to set "spurt" into 1 cell and
+        "lesser heal" into 4 cell before using this
+        script. Don't forget to get calamine and water.\n
         Hold 'ctrl' to stop."""
+
+        print(about)
+
+
+class HumanLore:
+
+    """Special human lore training.\n
+            Open character's menu (C key) and
+            set your character facing to priest.
+            After the cycles you have indicated,
+            pick up the bags and cook all of that.\n
+            P.S. set your window size at 1920 and 1080.\n
+            Hold 'ctrl' to stop."""
+
+    @staticmethod
+    def start(repetition=20):
 
         from pyautogui import click, hold
         from time import sleep
@@ -138,14 +103,30 @@ class Training:
         return 'Done'
 
     @staticmethod
-    def mounted_magery(repetition=10):
-
-        """Special mounted training with water.\n
-        You need to set "spurt" into 1 cell and
-        "lesser heal" into 4 cell before using this
-        script. Don't forget to get calamine and water.\n
-        Mount your horse before using script. \n
+    def help_func():
+        about = """
+        Special human lore training.\n
+        Open character's menu (C key) and
+        set your character facing to priest.
+        After the cycles you have indicated,
+        pick up the bags and cook all of that.\n
+        P.S. set your window size at 1920 and 1080.\n
         Hold 'ctrl' to stop."""
+
+        print(about)
+
+
+class MountedMagery:
+
+    """Special mounted training with water.\n
+            You need to set "spurt" into 1 cell and
+            "lesser heal" into 4 cell before using this
+            script. Don't forget to get calamine and water.\n
+            Mount your horse before using script. \n
+            Hold 'ctrl' to stop."""
+
+    @staticmethod
+    def start(repetition=10):
 
         from pyautogui import press
         from time import sleep
@@ -183,14 +164,30 @@ class Training:
         return 'Done'
 
     @staticmethod
-    def swift_riding(minutes=30):
+    def help_func():
 
-        """Special swift riding training.\n
-        Mount your horse and use this script.\n
-        That's all.\n
-        P.S. Don't forget to feed your horse. Care about
-        your horse. Sometimes it can save your mortal life.
-         Hold 'ctrl' to stop."""
+        about = """
+        Special mounted training with water.\n
+        You need to set "spurt" into 1 cell and
+        "lesser heal" into 4 cell before using this
+        script. Don't forget to get calamine and water.\n
+        Mount your horse before using script. \n
+        Hold 'ctrl' to stop."""
+
+        print(about)
+
+
+class SwiftRiding:
+
+    """Special swift riding training.\n
+            Mount your horse and use this script.\n
+            That's all.\n
+            P.S. Don't forget to feed your horse. Care about
+            your horse. Sometimes it can save your mortal life.
+             Hold 'ctrl' to stop."""
+
+    @staticmethod
+    def start(minutes=30):
 
         from pyautogui import hold
         from time import sleep
@@ -207,18 +204,33 @@ class Training:
                 sleep(minutes * 60)
 
     @staticmethod
-    def blocking_training(repetitions=2, speed=None):
+    def help_func():
 
-        """Special blocking training.\n
-        This training not for your actions skills, It's for your
-        mate. Set your character where you want and start the script.
-        You will auto-attack and your mate will block.\n
-         Before using:\n
-        1.Set your settings overhead attack on 'alt' key and
-        thrust attack on 'F' key. \n
-        2.Put your swords on hotkeys 1, 2, 3... 9.\n
-        After scripts starting choose speed of attack where 1 is very quickly,
-        2 is normal and 3 is very slow.  Hold 'ctrl' to stop."""
+        about = """
+        Special swift riding training.\n
+        Mount your horse and use this script.\n
+        That's all.\n
+        P.S. Don't forget to feed your horse. Care about
+        your horse. Sometimes it can save your mortal life.
+         Hold 'ctrl' to stop."""
+
+        print(about)
+
+
+class BlockingTraining:
+    """Special blocking training.\n
+            This training not for your actions skills, It's for your
+            mate. Set your character where you want and start the script.
+            You will auto-attack and your mate will block.\n
+             Before using:\n
+            1.Set your settings overhead attack on 'alt' key and
+            thrust attack on 'F' key. \n
+            2.Put your swords on hotkeys 1, 2, 3... 9.\n
+            After scripts starting choose speed of attack where 1 is very quickly,
+            2 is normal and 3 is very slow.  Hold 'ctrl' to stop."""
+
+    @staticmethod
+    def start(repetitions=2, speed=None):
 
         from pyautogui import click, press
         from time import sleep
@@ -282,11 +294,32 @@ class Training:
                 break
 
     @staticmethod
-    def defencing_and_attacking_stance(repetitions=300):
+    def help_func():
 
-        """Attacking and defencing stance training.\n
-        Set your character facing to another character then\n
-        start the script.\n Hold 'ctrl' to stop."""
+        about = """
+        Special blocking training.\n
+        This training not for your actions skills, It's for your
+        mate. Set your character where you want and start the script.
+        You will auto-attack and your mate will block.\n
+         Before using:\n
+        1.Set your settings overhead attack on 'alt' key and
+        thrust attack on 'F' key. \n
+        2.Put your swords on hotkeys 1, 2, 3... 9.\n
+        After scripts starting choose speed of attack where 1 is very quickly,
+        2 is normal and 3 is very slow.  Hold 'ctrl' to stop."""
+
+        print(about)
+
+
+class DefencingAndAttackingStance:
+
+    """Attacking and defencing stance training.\n
+    Set your character facing to another character then
+    start the script.
+     Hold 'ctrl' to stop."""
+
+    @staticmethod
+    def start(repetitions=300):
 
         from pyautogui import click
         from time import sleep
@@ -302,6 +335,16 @@ class Training:
 
             click()
             sleep(0.7)
+
+    @staticmethod
+    def help_func():
+
+        about = """
+        Attacking and defencing stance training.\n
+        Set your character facing to another character then 
+        start the script.\n Hold 'ctrl' to stop."""
+
+        print(about)
 
 
 class TimerCount:
@@ -341,37 +384,37 @@ class ConsoleBuild:
                            'Your choice: ')
 
             if choice == '1':
-                Training.mental_training()
+                MentalOffence.start()
             elif choice == '2':
-                Training.mounted_magery()
+                MountedMagery.start()
             elif choice == '3':
-                Training.human_lore()
+                HumanLore.start()
             elif choice == '4':
-                Training.swift_riding()
+                SwiftRiding.start()
             elif choice == '5':
-                Training.blocking_training()
+                BlockingTraining.start()
             elif choice == '6':
-                Training.defencing_and_attacking_stance()
+                DefencingAndAttackingStance.start()
             elif choice == '0':
                 exit(0)
 
             elif choice == '1h':
-                print(Training.data['mental_training'])
+                MentalOffence.help_func()
                 input('Press any key...')
             elif choice == '2h':
-                print(Training.data['mounted_magery'])
+                MountedMagery.help_func()
                 input('Press any key...')
             elif choice == '3h':
-                print(Training.data['human_lore'])
+                HumanLore.help_func()
                 input('Press any key...')
             elif choice == '4h':
-                print(Training.data['swift_riding'])
+                SwiftRiding.help_func()
                 input('Press any key...')
             elif choice == '5h':
-                print(Training.data['blocking_training'])
+                BlockingTraining.help_func()
                 input('Press any key...')
             elif choice == '6h':
-                print(Training.data['defencing_and_attacking_stance'])
+                DefencingAndAttackingStance.help_func()
                 input('Press any key...')
             else:
                 print('Please choose number from list...')
