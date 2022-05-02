@@ -15,7 +15,7 @@ class MentalOffence:
         from time import sleep
         from random import uniform as between
 
-        TimerCount.countdown(5)
+        TimerCount.countdown()
 
         count = -1
         while not is_pressed('ctrl'):
@@ -81,7 +81,7 @@ class HumanLore:
         from time import sleep
         from random import randrange as between
 
-        TimerCount.countdown(5)
+        TimerCount.countdown()
 
         count = -1
         while not is_pressed('ctrl'):
@@ -131,7 +131,7 @@ class MountedMagery:
         from time import sleep
         from random import uniform as between
 
-        TimerCount.countdown(5)
+        TimerCount.countdown()
 
         count = -1
         while not is_pressed('ctrl'):
@@ -191,7 +191,7 @@ class SwiftRiding:
         from pyautogui import hold
         from time import sleep
 
-        TimerCount.countdown(5)
+        TimerCount.countdown()
 
         while not is_pressed('ctrl'):
 
@@ -246,7 +246,7 @@ class BlockingTraining:
             except ValueError:
                 speed = 1
 
-        TimerCount.countdown(5)
+        TimerCount.countdown()
 
         if speed == 1:
             actually_speed = 0.7
@@ -324,7 +324,7 @@ class DefencingAndAttackingStance:
         from pyautogui import click
         from time import sleep
 
-        TimerCount.countdown(5)
+        TimerCount.countdown()
 
         count = -1
         while not is_pressed('ctrl'):
@@ -353,12 +353,21 @@ class TimerCount:
     arg - seconds to wait"""
 
     @staticmethod
-    def countdown(sec):
-
+    def countdown(sec=30):
+        from keyboard import is_pressed
         from time import sleep
 
-        for i in range(sec, 0, -1):
-            print(i)
+        print(f'Start after {sec} seconds. Press "p" to skip...')
+        seconds = sec
+        count = -1
+        while not is_pressed('p'):
+
+            seconds -= 1
+            count += 1
+            if sec == count:
+                break
+
+            print(seconds)
             sleep(1)
 
 
