@@ -349,6 +349,9 @@ class DefencingAndAttackingStance:
 
 class TimerCount:
 
+    """Simple countdown.\n
+    arg - seconds to wait"""
+
     @staticmethod
     def countdown(sec):
 
@@ -360,6 +363,8 @@ class TimerCount:
 
 
 class ConsoleBuild:
+
+    """Build of all training scripts."""
 
     def __init__(self):
         pass
