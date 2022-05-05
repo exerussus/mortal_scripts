@@ -347,6 +347,38 @@ class DefencingAndAttackingStance:
         print(about)
 
 
+class AutoAttacker:
+
+    """Simple attacking script.\n
+    Set your character facing to another character\n
+    and start this script to attack.\n
+    Hold 'ctrl' to stop."""
+
+    @staticmethod
+    def start():
+        from pyautogui import click
+        from time import sleep
+        from keyboard import is_pressed
+        from random import uniform
+
+        TimerCount.countdown()
+
+        while not is_pressed('ctrl'):
+
+            click()
+            sleep(uniform(0.4, 0.7))
+
+    @staticmethod
+    def help_func():
+
+        about = """Simple attacking script.\n
+                Set your character facing to another character\n
+                and start this script to attack.\n
+                Hold 'ctrl' to stop."""
+
+        print(about)
+
+
 class TimerCount:
 
     """Simple countdown.\n
@@ -395,6 +427,7 @@ class ConsoleBuild:
                            '4. Swift riding\n'
                            '5. Blocking training\n'
                            '6. Defencing and attacking stance\n'
+                           '7. Auto-Attack'
                            '0. Exit \n'
                            'If you need help, write "h" after number.'
                            'Your choice: ')
@@ -411,6 +444,8 @@ class ConsoleBuild:
                 BlockingTraining.start()
             elif choice == '6':
                 DefencingAndAttackingStance.start()
+            elif choice == '7':
+                AutoAttacker.start()
             elif choice == '0':
                 exit(0)
 
@@ -431,6 +466,9 @@ class ConsoleBuild:
                 input('Press any key...')
             elif choice == '6h':
                 DefencingAndAttackingStance.help_func()
+                input('Press any key...')
+            elif choice == '7h':
+                AutoAttacker.help_func()
                 input('Press any key...')
             else:
                 print('Please choose number from list...')
