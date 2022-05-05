@@ -317,6 +317,9 @@ class DefencingAndAttackingStance:
     start the script.
      Hold 'ctrl' to stop."""
 
+    def __init__(self):
+        pass
+
     @staticmethod
     def start(repetitions=300):
 
@@ -383,6 +386,9 @@ class TimerCount:
 
     """Simple countdown.\n
     arg - seconds to wait"""
+
+    def __init__(self):
+        pass
 
     @staticmethod
     def countdown(sec=30):
