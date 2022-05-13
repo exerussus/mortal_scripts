@@ -1,21 +1,84 @@
 
 
-class MentalOffence:
+class Spurt:
 
-    """Special mental training with water.\n
-        You need to set "spurt" into 1 cell and
-        "lesser heal" into 4 cell before using this
-        script. Don't forget to get calamine and water.\n
-        Hold 'ctrl' to stop."""
+    @classmethod
+    def do(cls, rep):
+        from keyboard import is_pressed
+        from pyautogui import press, hold
+        from time import sleep
+        from random import uniform as between
 
-    @staticmethod
-    def start(repetition=10):
+        spurt_count = 0
+        while not is_pressed('ctrl'):
+
+            spurt_count += 1
+            print(f'Remaining spurt cycles:  {rep - spurt_count}')
+            if spurt_count == rep:
+                break
+
+            with hold('alt'):
+                press('1')
+            sleep(between(1.7, 2.2))
+            press('q')
+            sleep(between(1.0, 1.5))
+
+
+class LesserHeal:
+
+    @classmethod
+    def do(cls, rep):
+        from keyboard import is_pressed
+        from pyautogui import press, hold
+        from time import sleep
+        from random import uniform as between
+
+        heal_count = 0
+        while not is_pressed('ctrl'):
+
+            heal_count += 1
+            print(f'Remaining healing cycles:  {rep - heal_count}')
+            if heal_count == rep:
+                print('Done.')
+                break
+            with hold('alt'):
+                press('4')
+            sleep(between(1.7, 2.2))
+            press('q')
+
+
+class Resting:
+
+    @classmethod
+    def do(cls, count):
         from keyboard import is_pressed
         from pyautogui import press
         from time import sleep
         from random import uniform as between
 
-        TimerCount.countdown()
+        press('0')
+        check_count = between((count - 5), (count + 5))
+        rest_count = 0
+        while not is_pressed('ctrl'):
+            rest_count += 1
+            print(f'Remaining healing cycles:  {count - rest_count}')
+
+            if check_count == rest_count:
+                break
+            sleep(1)
+
+
+class Constructor:
+
+    @classmethod
+    def simple(cls, *args):
+
+        for i in args:
+            i
+
+    @classmethod
+    def repetition(cls, repetition, *args):
+        from keyboard import is_pressed
 
         count = -1
         while not is_pressed('ctrl'):
@@ -24,39 +87,51 @@ class MentalOffence:
             if count == repetition:
                 break
 
-            spurt_count = 0
-            while not is_pressed('ctrl'):
+            for i in args:
+                i
 
-                spurt_count += 1
-                if spurt_count == 50:
-                    break
 
-                press('1')
-                sleep(between(1.7, 2.2))
-                press('q')
-                sleep(between(1.0, 1.5))
+class MentalOffence:
 
-            heal_count = 0
-            while not is_pressed('ctrl'):
+    """Special mental training with water.\n
+        You need to set "spurt" into alt+1 cell,
+        "lesser heal" into alt+4 cell and resting into alt+9 before using this
+        script. Don't forget to get calamine and water.\n
+        Hold 'ctrl' to stop."""
 
-                heal_count += 1
-                if heal_count == 6:
-                    break
+    @staticmethod
+    def start():
+        spurt, lesser_heal, resting, repetition = MentalOffence.menu()
+        if spurt == 0 or lesser_heal == 0 or resting == 0 or repetition == 0:
+            pass
+        else:
+            TimerCount.countdown()
+            Constructor.repetition(repetition, Spurt.do(spurt), LesserHeal.do(lesser_heal), Resting.do(resting))
 
-                press('4')
-                sleep(between(1.7, 2.2))
-                press('q')
+    @staticmethod
+    def menu():
+        setting_choice = input("Choose a setting:\n"
+                               "1. Standard\n"
+                               "2. Advanced\n"
+                               "3. Back\n"
+                               "Your choice: ")
 
-            press('0')
+        if setting_choice == '1':
+            return 30, 6, 30, 25
 
-            check_count = between(24.0, 35.5)
-            rest_count = 0
-            while not is_pressed('ctrl'):
-                rest_count += 1
+        elif setting_choice == '2':
+            spurt = int(input("Spurt's count (normal = 30):  "))
+            lesser_heal = int(input("Lesser heal count (normal = 6):  "))
+            resting = int(input("Resting count (normal = 30):  "))
+            repetition = int(input('Cycles (normal = 25):  '))
+            return spurt, lesser_heal, resting, repetition
 
-                if check_count == rest_count:
-                    break
-                sleep(1)
+        elif setting_choice == '0':
+            return 0, 0, 0, 0
+
+        else:
+            input('Please choose number from list...')
+            return 0, 0, 0, 0
 
     @staticmethod
     def help_func():
