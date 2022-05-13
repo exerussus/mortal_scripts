@@ -48,9 +48,15 @@ class MentalOffence:
                 press('q')
 
             press('0')
-            sleep(between(24.0, 35.5))
 
-        return 'Done'
+            check_count = between(24.0, 35.5)
+            rest_count = 0
+            while not is_pressed('ctrl'):
+                rest_count += 1
+
+                if check_count == rest_count:
+                    break
+                sleep(1)
 
     @staticmethod
     def help_func():
@@ -94,7 +100,13 @@ class HumanLore:
 
             click(x=1380, y=661)
 
-            sleep(between(14, 18))
+            check_count = between(14, 18)
+            waiting_count = -1
+            while not is_pressed('ctrl'):
+                waiting_count += 1
+                if waiting_count == check_count:
+                    break
+                sleep(1)
 
             with hold('r'):
                 sleep(between(2, 4))
@@ -199,8 +211,16 @@ class SwiftRiding:
                 sleep(0.1)
             with hold('w'):
                 sleep(0.1)
-            with hold('a'):
-                sleep(minutes * 60)
+
+            count = -1
+            while not is_pressed('ctrl'):
+
+                count += 1
+                if count == minutes * 60:
+                    break
+
+                with hold('a'):
+                    sleep(1)
 
     @staticmethod
     def help_func():
@@ -369,7 +389,7 @@ class AutoAttacker:
         while not is_pressed('ctrl'):
 
             click()
-            sleep(uniform(0.4, 0.7))
+            sleep(uniform(0.1, 0.3))
 
     @staticmethod
     def help_func():
@@ -420,11 +440,10 @@ class ConsoleBuild:
     def run():
 
         from time import sleep
-        from keyboard import is_pressed
         print('Welcome to MO2 scripts!')
         sleep(0.2)
 
-        while not is_pressed('0'):
+        while True:
 
             choice = input('Choose action script:\n'
                            '1. Mental training\n'
@@ -433,9 +452,9 @@ class ConsoleBuild:
                            '4. Swift riding\n'
                            '5. Blocking training\n'
                            '6. Defencing and attacking stance\n'
-                           '7. Auto-Attack'
+                           '7. Auto-Attack\n'
                            '0. Exit \n'
-                           'If you need help, write "h" after number.'
+                           'If you need help, write "h" after number.\n'
                            'Your choice: ')
 
             if choice == '1':
