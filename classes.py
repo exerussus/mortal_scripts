@@ -23,6 +23,14 @@ class Spurt:
             press('q')
             sleep(between(1.0, 1.5))
 
+    @classmethod
+    def normal(cls):
+        return 30
+
+    @classmethod
+    def advance(cls):
+        return "Spurt's count (normal = 30):  "
+
 
 class LesserHeal:
 
@@ -46,6 +54,14 @@ class LesserHeal:
             sleep(between(1.7, 2.2))
             press('q')
 
+    @classmethod
+    def normal(cls):
+        return 6
+
+    @classmethod
+    def advance(cls):
+        return "Lesser heal count (normal = 6):  "
+
 
 class Resting:
 
@@ -66,6 +82,14 @@ class Resting:
             if check_count == rest_count:
                 break
             sleep(1)
+
+    @classmethod
+    def normal(cls):
+        return 30
+
+    @classmethod
+    def advance(cls):
+        return "Resting count (normal = 30):  "
 
 
 class Constructor:
@@ -91,6 +115,43 @@ class Constructor:
                 i
 
 
+class AdvancedMenu:
+
+    @classmethod
+    def do(cls, *args):
+        setting_choice = input("Choose a setting:\n"
+                               "1. Standard\n"
+                               "2. Advanced\n"
+                               "3. Back\n"
+                               "Your choice: ")
+
+        if setting_choice == '1':
+            values_list = []
+            for i in args:
+                values_list.append(i.normal())
+            return values_list
+
+        elif setting_choice == '2':
+            values_list = []
+            for i in args:
+                values_list.append(int(input(i.advance())))
+            values_list.append(int(input('Cycles (normal = 25):  ')))
+            return values_list
+
+        elif setting_choice == '0':
+            values_list = []
+            for i in args:
+                values_list.append(0)
+            return values_list
+
+        else:
+            input('Please choose number from list...')
+            values_list = []
+            for i in args:
+                values_list.append(0)
+            return values_list
+
+
 class MentalOffence:
 
     """Special mental training with water.\n
@@ -99,39 +160,14 @@ class MentalOffence:
         script. Don't forget to get calamine and water.\n
         Hold 'ctrl' to stop."""
 
-    @staticmethod
-    def start():
-        spurt, lesser_heal, resting, repetition = MentalOffence.menu()
+    @classmethod
+    def start(cls):
+        spurt, lesser_heal, resting, repetition = AdvancedMenu.do(Spurt, LesserHeal, Resting)
         if spurt == 0 or lesser_heal == 0 or resting == 0 or repetition == 0:
             pass
         else:
             TimerCount.countdown()
             Constructor.repetition(repetition, Spurt.do(spurt), LesserHeal.do(lesser_heal), Resting.do(resting))
-
-    @staticmethod
-    def menu():
-        setting_choice = input("Choose a setting:\n"
-                               "1. Standard\n"
-                               "2. Advanced\n"
-                               "3. Back\n"
-                               "Your choice: ")
-
-        if setting_choice == '1':
-            return 30, 6, 30, 25
-
-        elif setting_choice == '2':
-            spurt = int(input("Spurt's count (normal = 30):  "))
-            lesser_heal = int(input("Lesser heal count (normal = 6):  "))
-            resting = int(input("Resting count (normal = 30):  "))
-            repetition = int(input('Cycles (normal = 25):  '))
-            return spurt, lesser_heal, resting, repetition
-
-        elif setting_choice == '0':
-            return 0, 0, 0, 0
-
-        else:
-            input('Please choose number from list...')
-            return 0, 0, 0, 0
 
     @staticmethod
     def help_func():
@@ -145,6 +181,42 @@ class MentalOffence:
         print(about)
 
 
+class ResurrectingSuicide:
+
+    @classmethod
+    def do(cls, rep):
+
+        from keyboard import is_pressed
+        from pyautogui import click, hold
+        from time import sleep
+        from random import randrange as between
+
+        count = -1
+        while not is_pressed('ctrl'):
+
+            count += 1
+            if count == rep:
+                break
+
+            print(f'Remaining cycles:  {rep - count}')
+
+            sleep(between(2, 4))
+
+            click(x=1380, y=661)
+
+            check_count = between(14, 18)
+            waiting_count = -1
+            while not is_pressed('ctrl'):
+                waiting_count += 1
+                print(f'Waiting: {check_count - waiting_count}')
+                if waiting_count == check_count:
+                    break
+                sleep(1)
+
+            with hold('r'):
+                sleep(between(2, 4))
+
+
 class HumanLore:
 
     """Special human lore training.\n
@@ -155,38 +227,17 @@ class HumanLore:
             P.S. set your window size at 1920 and 1080.\n
             Hold 'ctrl' to stop."""
 
-    @staticmethod
-    def start(repetition=20):
-        from keyboard import is_pressed
-        from pyautogui import click, hold
-        from time import sleep
-        from random import randrange as between
+    @classmethod
+    def start(cls):
 
         TimerCount.countdown()
+        Constructor.repetition(cls.menu())
 
-        count = -1
-        while not is_pressed('ctrl'):
+    @classmethod
+    def menu(cls):
 
-            count += 1
-            if count == repetition:
-                break
+        pass
 
-            sleep(between(2, 4))
-
-            click(x=1380, y=661)
-
-            check_count = between(14, 18)
-            waiting_count = -1
-            while not is_pressed('ctrl'):
-                waiting_count += 1
-                if waiting_count == check_count:
-                    break
-                sleep(1)
-
-            with hold('r'):
-                sleep(between(2, 4))
-
-        return 'Done'
 
     @staticmethod
     def help_func():
