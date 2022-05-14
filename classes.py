@@ -79,7 +79,7 @@ class Resting:
             rest_count += 1
             print(f'Remaining healing cycles:  {count - rest_count}')
 
-            if check_count == rest_count:
+            if check_count <= rest_count:
                 break
             sleep(1)
 
@@ -108,6 +108,7 @@ class Constructor:
         while not is_pressed('ctrl'):
 
             count += 1
+            print(f'Remaining cycles:  {repetition - count}')
             if count == repetition:
                 break
 
@@ -118,37 +119,28 @@ class Constructor:
 class ResurrectingSuicide:
 
     @classmethod
-    def do(cls, rep):
+    def do(cls):
 
         from keyboard import is_pressed
         from pyautogui import click, hold
         from time import sleep
         from random import randrange as between
 
-        count = -1
+        sleep(between(2, 4))
+
+        click(x=1380, y=661)
+
+        check_count = between(14, 18)
+        waiting_count = -1
         while not is_pressed('ctrl'):
-
-            count += 1
-            if count == rep:
+            waiting_count += 1
+            print(f'Waiting: {check_count - waiting_count}')
+            if waiting_count == check_count:
                 break
+            sleep(1)
 
-            print(f'Remaining cycles:  {rep - count}')
-
+        with hold('r'):
             sleep(between(2, 4))
-
-            click(x=1380, y=661)
-
-            check_count = between(14, 18)
-            waiting_count = -1
-            while not is_pressed('ctrl'):
-                waiting_count += 1
-                print(f'Waiting: {check_count - waiting_count}')
-                if waiting_count == check_count:
-                    break
-                sleep(1)
-
-            with hold('r'):
-                sleep(between(2, 4))
 
 
 class AdvancedMenu:
@@ -176,14 +168,14 @@ class AdvancedMenu:
 
         elif setting_choice == '0':
             values_list = []
-            for i in args:
+            for _ in args:
                 values_list.append(0)
             return values_list
 
         else:
             input('Please choose number from list...')
             values_list = []
-            for i in args:
+            for _ in args:
                 values_list.append(0)
             return values_list
 
@@ -229,14 +221,15 @@ class HumanLore:
 
     @classmethod
     def start(cls):
+        repetition = AdvancedMenu.do()[0]
+        if repetition == 0:
+            pass
+        else:
+            TimerCount.countdown()
+            Constructor.repetition(repetition, ResurrectingSuicide.do())
 
-        TimerCount.countdown()
-        Constructor.repetition()
-
-
-
-    @staticmethod
-    def help_func():
+    @classmethod
+    def help_func(cls):
         about = """
         Special human lore training.\n
         Open character's menu (C key) and
