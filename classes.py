@@ -77,7 +77,7 @@ class Resting:
         rest_count = 0
         while not is_pressed('ctrl'):
             rest_count += 1
-            print(f'Remaining healing cycles:  {count - rest_count}')
+            print(f'Resting seconds:  {check_count - rest_count}')
 
             if check_count <= rest_count:
                 break
@@ -251,43 +251,15 @@ class MountedMagery:
             Mount your horse before using script. \n
             Hold 'ctrl' to stop."""
 
-    @staticmethod
-    def start(repetition=10):
-        from keyboard import is_pressed
-        from pyautogui import press
-        from time import sleep
-        from random import uniform as between
-
+    @classmethod
+    def start(cls):
+        repetition = AdvancedMenu.do()[0]
+        if repetition == 0:
+            pass
+        else:
+            TimerCount.countdown()
+            Constructor.repetition(repetition, ResurrectingSuicide.do())
         TimerCount.countdown()
-
-        count = -1
-        while not is_pressed('ctrl'):
-
-            count += 1
-            if count == repetition:
-                break
-
-            spurt_count = 0
-            while not is_pressed('ctrl'):
-                spurt_count += 1
-                press('1')
-                sleep((between(3, 4)))
-                press('q')
-                sleep(between(1, 2))
-                if spurt_count == 23:
-                    break
-
-            heal_count = 0
-            while not is_pressed('ctrl'):
-                heal_count += 1
-                press('4')
-                sleep(between(3, 4))
-                press('q')
-                sleep(between(1, 2))
-                if heal_count == 5:
-                    break
-
-        return 'Done'
 
     @staticmethod
     def help_func():
