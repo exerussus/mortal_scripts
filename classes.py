@@ -36,6 +36,7 @@ class LesserHeal:
 
     @classmethod
     def do(cls, rep):
+
         from keyboard import is_pressed
         from pyautogui import press, hold
         from time import sleep
@@ -146,12 +147,12 @@ class ResurrectingSuicide:
 class Waiting:
 
     @classmethod
-    def do(cls):
+    def do(cls, count):
 
         from keyboard import is_pressed
         from time import sleep
         from random import randrange as between
-        check_count = between(14, 18)
+        check_count = between(count - 2, count + 2)
         waiting_count = -1
         while not is_pressed('ctrl'):
             waiting_count += 1
@@ -159,6 +160,47 @@ class Waiting:
             if waiting_count == check_count:
                 break
             sleep(1)
+
+    @classmethod
+    def normal(cls):
+        return 16
+
+    @classmethod
+    def advance(cls):
+        return "Waiting seconds count (normal = 16):  "
+
+
+class Riding:
+
+    @classmethod
+    def do(cls, rep):
+
+        from keyboard import is_pressed
+        from time import sleep
+        from pyautogui import hold
+
+        with hold('w'):
+            sleep(0.1)
+        with hold('w'):
+            sleep(0.1)
+
+        count = -1
+        while not is_pressed('ctrl'):
+
+            count += 1
+            if count == rep * 60:
+                break
+
+            with hold('a'):
+                sleep(1)
+
+    @classmethod
+    def normal(cls):
+        return 30
+
+    @classmethod
+    def advance(cls):
+        return "Minutes count (normal = 30):  "
 
 
 class AdvancedMenu:
@@ -303,29 +345,16 @@ class SwiftRiding:
              Hold 'ctrl' to stop."""
 
     @staticmethod
-    def start(minutes=30):
-        from keyboard import is_pressed
-        from pyautogui import hold
-        from time import sleep
+    def start():
 
         TimerCount.countdown()
-
-        while not is_pressed('ctrl'):
-
-            with hold('w'):
-                sleep(0.1)
-            with hold('w'):
-                sleep(0.1)
-
-            count = -1
-            while not is_pressed('ctrl'):
-
-                count += 1
-                if count == minutes * 60:
-                    break
-
-                with hold('a'):
-                    sleep(1)
+        riding, repetition = AdvancedMenu.do(Riding)
+        if repetition == 0:
+            pass
+        else:
+            TimerCount.countdown()
+            Constructor.repetition(repetition, Riding.do(riding))
+        TimerCount.countdown()
 
     @staticmethod
     def help_func():
