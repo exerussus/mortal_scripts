@@ -1,5 +1,6 @@
-from constructor import Constructor
+from console_build import ConsoleBuild
 
-Constructor.repetition()
 
+if __name__ == '__main__':
+    ConsoleBuild.run()
 

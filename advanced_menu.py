@@ -14,6 +14,7 @@ class AdvancedMenu:
             values_list = []
             for i in args:
                 values_list.append(i.normal())
+            values_list.append(999)
             return values_list
 
         elif setting_choice == '2':

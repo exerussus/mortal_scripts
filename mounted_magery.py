@@ -17,7 +17,7 @@ class MountedMagery:
         from advanced_menu import AdvancedMenu
         from resurrecting_suicide import ResurrectingSuicide
 
-        repetition = AdvancedMenu.do()[0]
+        repetition = AdvancedMenu.do()
         if repetition == 0:
             pass
         else:
